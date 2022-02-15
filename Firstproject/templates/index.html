@@ -1,0 +1,11 @@
+{% extends 'base.html '%}
+
+{% block title %}
+Test
+{% endblock title%}
+
+{% block body %}
+
+Welcome to the page {{request.user}}
+<a href="/logout" >Logout</a>
+{% endblock body%}

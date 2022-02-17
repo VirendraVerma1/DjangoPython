@@ -23,4 +23,5 @@ urlpatterns = [
     path('contact', views.contact,name="contact"),
     path('login', views.loginUser,name="login"),
     path('logout', views.logoutUser,name="logout"),
+    path('blogpost/<int:idd>', views.blogpost,name="blogpost"),
 ]

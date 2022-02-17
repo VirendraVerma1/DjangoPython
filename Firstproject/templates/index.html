@@ -8,4 +8,17 @@ Test
 
 Welcome to the page {{request.user}}
 <a href="/logout" >Logout</a>
+
+{% for contact in contacts %}
+<div class="container" style="margin-top:20px;">
+<div class="card" style="width: 50rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{contact.name}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{contact.phone}}</h6>
+      <p class="card-text">{{contact.desc}}</p>
+      <a href="{% url 'blogpost' contact.id %}" class="card-link">Read More</a>
+    </div>
+  </div>
+</div>
+{% endfor %}
 {% endblock body%}

@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from datetime import datetime
 from home.models import Contact
+from home.models import Blog
 from django.contrib.auth.models import User
 from django.contrib.auth import login,logout,authenticate
 
@@ -9,14 +10,18 @@ from django.contrib.auth import login,logout,authenticate
 
 
 def index(request):
+    
     if(request.user.is_anonymous):
         return redirect("/login")
     else:
-        return render(request,'index.html')
-    # context={
-    #     'value':"Hello",
-    #     'value1':"World"
-    # }
+        
+        contacts=Contact.objects.all()
+        context={
+            'contacts':contacts
+        }
+
+        return render(request,'index.html',context)
+    
     # return render(request,'index.html',context)
     # return HttpResponse("this is homepage")
 
@@ -33,9 +38,6 @@ def contact(request):
         contact.save()
         
     return render(request,'contact.html')
-
-
-
 
 
 def loginUser(request):
@@ -56,3 +58,13 @@ def loginUser(request):
 def logoutUser(request):
     logout(request)
     return redirect("/login")
+
+
+def blogpost(request,idd):
+    contact=Contact.objects.get(id=idd)
+    # contact.name="Test"
+    # contact.save()
+    context={
+            'contact':contact
+        }
+    return render(request,'blogpost.html',context)

@@ -68,3 +68,7 @@ def blogpost(request,idd):
             'contact':contact
         }
     return render(request,'blogpost.html',context)
+
+
+def blogs(request):
+    return render(request,'blogs.html')

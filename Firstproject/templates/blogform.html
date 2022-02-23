@@ -1,4 +1,4 @@
-{% extends 'base.html '%}
+
 
 {% block title %}
 Contact
@@ -7,18 +7,12 @@ Contact
 {% block body %}
 
 <div class ="container">
-<form action="/contact" method="POST">
-    {% csrf_token %}
-    <label for="name">Name</label><br>
-    <input type="text" id="name" name="name"><br>
-    <label for="phone">Phone</label><br>
-    <input type="text" id="phone" name="phone"><br><br>
-    <label for="email">Email</label><br>
-    <input type="text" id="email" name="email"><br><br>
-    <label for="desc">Description</label><br>
-    <input type="text" id="desc" name="desc"><br><br>
-    <input type="submit" value="Submit">
-</form> 
+    <form action='/blog' method='POST' enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Submit">
+    </form> 
 </div>
 
 {% endblock body%}
+

@@ -9,9 +9,9 @@ class Contact(models.Model):
     date=models.DateField()
 
 class Blog(models.Model):
-    title=models.CharField(max_length=122)
-    desc=models.TextField()
-    user_id=models.IntegerField()
-    username=models.CharField(max_length=122)
-    image=models.ImageField(upload_to='images/')
-    date=models.DateField()
+    title=models.CharField(max_length=122,null=True,default=None)
+    desc=models.TextField(null=True,default=None)
+    user_id=models.IntegerField(null=True,default=None)
+    username=models.CharField(max_length=122,null=True,default=None)
+    image=models.ImageField(upload_to='static/images/',null=True,default=None)
+    date=models.DateField(null=True,default=None)

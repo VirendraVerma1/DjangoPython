@@ -6,6 +6,8 @@ from home.models import Blog
 from django.contrib.auth.models import User
 from django.contrib.auth import login,logout,authenticate
 
+from home.forms import BlogFrom
+
 # Create your views here.
 
 
@@ -72,3 +74,25 @@ def blogpost(request,idd):
 
 def blogs(request):
     return render(request,'blogs.html')
+
+def blog(request):
+    if(request.user.is_anonymous):
+        return redirect('/login')
+    else:
+        form=BlogFrom()
+        if(request.method == 'POST'):
+            form=BlogFrom(request.POST,request.FILES)
+            # print(form.fields.get('image'))
+            # form.fields.get('title')
+            if(form.is_valid()):
+                print("validated")
+                form.save()
+            else:
+                print(form.errors)
+            return render(request, 'contact.html')
+        else:
+            context={
+                'form':form
+            }
+            return render(request, 'blogform.html',context)
+

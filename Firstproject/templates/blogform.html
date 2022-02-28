@@ -1,4 +1,4 @@
-
+{% extends 'base.html '%}
 
 {% block title %}
 Contact
@@ -6,13 +6,60 @@ Contact
 
 {% block body %}
 
-<div class ="container">
-    <form action='/blog' method='POST' enctype="multipart/form-data">
-        {% csrf_token %}
-        {{form}}
-        <input type="submit" value="Submit">
-    </form> 
-</div>
+<div class="page-content">
+    <div class="holder breadcrumbs-wrap mt-0">
+      <div class="container">
+        <ul class="breadcrumbs">
+          <li><a href="index.html">Home</a></li>
+          <li><span>Blog Post</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="holder">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-18 col-lg-12">
+            <h2 class="text-center">Blog Post</h2>
+            <div class="form-wrapper">
+              <p>Create your new Post</p>
+              <form action='/blogform' method='POST' enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-sm-1">
+                    <div class="form-group">
+                      {{form.user_id}}
+                    </div>
+                  </div>
+                  <div class="col-sm-11">
+                    <div class="form-group">
+                      {{form.username}}
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                    {{form.title}}
+                </div>
+                <div class="form-group">
+                    {{form.desc}}
+                </div>
+                <div class="form-group">
+                    {{form.image}}
+                </div>
+                <div class="clearfix">
+                    {{form.date}}
+                </div>
+                <div class="text-center">
+                    <input type="submit" value="Submit">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
 {% endblock body%}
 

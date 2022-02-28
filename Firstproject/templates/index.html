@@ -20,17 +20,18 @@ Test
       <div class="page-title text-center">
         <h1>Our Blog</h1>
       </div>
+      <a href="{% url 'blogform' %}" class="btn btn--sm" style="float:right;">Create new Blog</a>
+      <br><br>
       <div class="row">
         <div class="col-md-14 aside aside--content">
           <div class="post-prws-listing">
 
-
-            {% for contact in contacts %}
+            {% for blog in blogs %}
             <div class="post-prw">
               <div class="row vert-margin-middle">
                 <div class="post-prw-img col-md-7">
-                  <a href="{% url 'blogpost' contact.id %}">
-                    {% comment %} <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{% static 'images/blog/blog-01.png' %}" class="lazyload fade-up" alt=""> {% endcomment %}
+                  <a href="{% url 'blogpost' blog.id %}">
+                    <img src="{{blog.image}}" class="lazyload fade-up" alt="">
                   </a>
                 </div>
                 <div class="post-prw-text col-md-11">
@@ -38,28 +39,58 @@ Test
                     <div class="post-prw-date"><i class="icon-calendar"></i>10 nov, 2020</div>
                     <div class="post-prw-date"><i class="icon-chat"></i>5 comments</div>
                   </div>
-                  <h4 class="post-prw-title"><a href="{% url 'blogpost' contact.id %}">{{contact.name}}</a></h4>
-                  <div class="post-prw-teaser">{{contact.desc}}</div>
+                  <h4 class="post-prw-title"><a href="{% url 'blogpost' blog.id %}">{{blog.title}}</a></h4>
+                  <div class="post-prw-teaser">{{blog.desc}}</div>
                   <div class="post-prw-btn">
-                    <a href="{% url 'blogpost' contact.id %}" class="btn btn--sm">Read More</a>
+                    <a href="{% url 'blogpost' blog.id %}" class="btn btn--sm">Read More</a>
                   </div>
                 </div>
               </div>
             </div>
+          
             {% endfor %}
 
-
-            
           </div>
+
+          {% if blogs.has_other_pages %}
           <div class="pagination-wrap d-flex mt-4">
             <ul class="pagination mt-0">
-              <li class="active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
+              {% if blogs.has_other_pages %}
+              <ul class="pagination mt-0">
+                {% if blogs.has_previous %}
+                  <li><a href="?page={{ blogs.previous_page_number }}">&laquo;</a></li>
+                {% else %}
+                  <li class="disabled"><span>&laquo;</span></li>
+                {% endif %}
+                {% for i in blogs.paginator.page_range %}
+                  {% if blogs.number == i %}
+                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                  {% else %}
+                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                  {% endif %}
+                {% endfor %}
+                {% if blogs.has_next %}
+                  <li><a href="?page={{ blogs.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                  <li class="disabled"><span>&raquo;</span></li>
+                {% endif %}
+              </ul>
+              {% endif %}
+
+
+              {% comment %} {% if blogs.has_previous %}
+                <li><a href="?page={{blogs.previous_page_number}}">&laquo;</a></li>
+              {% else %}
+                <li class="disabled"><a href="#">&laquo;</a></li>
+              {% endif %}
+              {% for i in blogs.paginator.page_range %}
+                {% if blogs.number==i %}
+                  <li><a href="?page={{i}}">{{i}}</a></li>
+                {% endif %}
+              {% endfor %} {% endcomment %}
             </ul>
           </div>
+          {% endif %}
         </div>
         <div class="col-md-4 aside aside--sidebar aside--right">
           <div class="aside-content">
@@ -111,5 +142,9 @@ Test
     </div>
   </div>
 </div>
+
+
+
+
 
 {% endblock body%}

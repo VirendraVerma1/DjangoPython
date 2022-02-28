@@ -10,4 +10,9 @@ class BlogFrom(ModelForm):
 
     def __init__(self, *args,**kwargs):
         super().__init__(*args,**kwargs)
-        self.fields['title'].widget.attrs.update({'class':'form-control','placeholder':'title','style':'margin-top:10px;margin-left:100px;'})
+        self.fields['title'].widget.attrs.update({'class':'form-control','placeholder':'title'})
+        self.fields['desc'].widget.attrs.update({'class':'form-control','placeholder':'description'})
+        self.fields['image'].widget.attrs.update({'class':'form-control'})
+        self.fields['date'].widget.attrs.update({'class':'form-control','type':'date'})
+        self.fields['user_id'].widget.attrs.update({'class':'form-control'})
+        self.fields['username'].widget.attrs.update({'class':'form-control'})

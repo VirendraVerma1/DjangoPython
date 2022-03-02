@@ -30,10 +30,10 @@ Blog Post
               <a href="#postComments" class="js-scroll-to"><i class="icon-chat"></i>15 Comment(s)</a>
             </div>
             <div class="post-img image-container" style="padding-bottom: 54.44%">
-              <img class="lazyload fade-up-fast" src="{{blog.image}}" alt="">
+              <img class="lazyload fade-up-fast" src="{{blog.image.url}}" alt="">
             </div>
             <div class="post-text">
-              {{blog.desc}}
+              {{blog.desc | safe }}
               <blockquote>
                 <div>But in certain circumstances and owing to the claims of duty or obligations of business it willfrequently occur that pleasures have to be repudiated and annoyances accepted.</div>
                 <div class="blockquote-author"><a href="#">Jon Cock</a></div>

@@ -36,11 +36,11 @@ Test
                 </div>
                 <div class="post-prw-text col-md-11">
                   <div class="post-prw-links">
-                    <div class="post-prw-date"><i class="icon-calendar"></i>10 nov, 2020</div>
+                    <div class="post-prw-date"><i class="icon-calendar"></i>{{blog.date}}</div>
                     <div class="post-prw-date"><i class="icon-chat"></i>5 comments</div>
                   </div>
                   <h4 class="post-prw-title"><a href="{% url 'blogpost' blog.id %}">{{blog.title}}</a></h4>
-                  <div class="post-prw-teaser">{{blog.desc}}</div>
+                  <div class="post-prw-teaser">{{blog.desc | safe }}</div>
                   <div class="post-prw-btn">
                     <a href="{% url 'blogpost' blog.id %}" class="btn btn--sm">Read More</a>
                   </div>

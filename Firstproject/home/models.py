@@ -8,6 +8,10 @@ class Contact(models.Model):
     desc=models.CharField(max_length=122)
     date=models.DateField()
 
+
+class Tag(models.Model):
+    title=models.CharField(max_length=122,null=True,default=None)
+
 class Blog(models.Model):
     title=models.CharField(max_length=122,null=True,default=None)
     desc=models.TextField(null=True,default=None)
@@ -15,3 +19,6 @@ class Blog(models.Model):
     username=models.CharField(max_length=122,null=True,default=None)
     image=models.ImageField(upload_to='static/images/',null=True,default=None)
     date=models.DateField(null=True,default=None)
+
+
+    

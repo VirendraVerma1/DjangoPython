@@ -1,6 +1,7 @@
 from attr import fields
+from home import widgets
 from home.models import Blog
-from django.forms import ModelForm
+from django.forms import ModelForm, SelectDateWidget
 from django import forms
 
 class BlogFrom(ModelForm):
@@ -10,6 +11,7 @@ class BlogFrom(ModelForm):
 
     def __init__(self, *args,**kwargs):
         super().__init__(*args,**kwargs)
+        self.fields['date'].widget=widgets.DateInput()
         self.fields['title'].widget.attrs.update({'class':'form-control','placeholder':'title'})
         self.fields['desc'].widget.attrs.update({'class':'form-control','placeholder':'description'})
         self.fields['image'].widget.attrs.update({'class':'form-control'})

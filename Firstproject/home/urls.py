@@ -25,6 +25,10 @@ urlpatterns = [
     path('contact', views.contact,name="contact"),
     path('login', views.loginUser,name="login"),
     path('logout', views.logoutUser,name="logout"),
-    path('blogform', views.blogform,name="blogform"),
+    path('blogform', views.blogform, name="blogform"),
     path('blogpost/<int:idd>', views.blogpost,name="blogpost"),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL,
+                              document_root=settings.MEDIA_ROOT)

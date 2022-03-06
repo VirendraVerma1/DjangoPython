@@ -1,0 +1,136 @@
+{% extends 'base.html '%}
+
+{% block title %}
+Test
+{% endblock title%}
+
+{% block body %}
+{% load static %}
+
+<div class="page-content">
+  <div class="holder breadcrumbs-wrap mt-0">
+    <div class="container">
+      <ul class="breadcrumbs">
+        <li><a href="index.html">Home</a></li>
+        <li><span>Our Blog</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="holder">
+    <div class="container">
+      <div class="page-title text-center">
+        <h1>Our Blog</h1>
+        <a href="{% url 'blogform' %}" class="btn btn--sm" style="float:right;">Create Blog</a>
+      </div>
+      <br>
+      <br>
+      <br>
+      <div class="row">
+        
+        <div class="col-md-14 aside aside--content">
+          <div class="post-prws-listing">
+
+            {% for blog in blogs %}
+            <div class="post-prw">
+              <div class="row vert-margin-middle">
+                <div class="post-prw-img col-md-7">
+                  <a href="{% url 'blogpost' blog.id %}">
+                    <img src="{{blog.image}}" data-src="{{blog.image}}" class="lazyload fade-up" alt="">
+                  </a>
+                </div>
+                <div class="post-prw-text col-md-11">
+                  <div class="post-prw-links">
+                    <div class="post-prw-date"><i class="icon-calendar"></i>10 nov, 2020</div>
+                    <div class="post-prw-date"><i class="icon-chat"></i>5 comments</div>
+                  </div>
+                  <h4 class="post-prw-title"><a href="{% url 'blogpost' blog.id %}">{{blog.title}}</a></h4>
+                  <div class="post-prw-teaser">{{blog.desc}}</div>
+                  <div class="post-prw-btn">
+                    <a href="{% url 'blogpost' blog.id %}" class="btn btn--sm">Read More</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            
+          </div>
+          
+          <div class="pagination-wrap d-flex mt-4">
+            {% if blogs.has_other_pages %}
+            <ul class="pagination mt-0">
+              {% if blogs.has_previous %}
+                <li><a href="?page={{ blogs.previous_page_number }}">&laquo;</a></li>
+              {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
+              {% endif %}
+              {% for i in blogs.paginator.page_range %}
+                {% if blogs.number == i %}
+                  <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                  <li><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+              {% endfor %}
+              {% if blogs.has_next %}
+                <li><a href="?page={{ blogs.next_page_number }}">&raquo;</a></li>
+              {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+              {% endif %}
+            </ul>
+            {% endif %}
+          </div>
+        </div>
+        <div class="col-md-4 aside aside--sidebar aside--right">
+          <div class="aside-content">
+            <div class="aside-block">
+              <h2 class="text-uppercase">Popular Tags</h2>
+              <ul class="tags-list">
+                <li><a href="#">jeans</a></li>
+                <li><a href="#">hand bags</a></li>
+                <li><a href="#">gift card</a></li>
+                <li><a href="#">goodwin</a></li>
+                <li><a href="#">seiko</a></li>
+                <li><a href="#">banita</a></li>
+                <li><a href="#">foxic</a></li>
+              </ul>
+            </div>
+            <div class="aside-block">
+              <h2 class="text-uppercase">Popular Posts</h2>
+              <div class="post-prw-simple-sm">
+                <a href="blog-post.html" class="post-prw-img">
+                  <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/blog/blog-05.png" class="lazyload fade-up" alt="">
+                </a>
+                <div class="post-prw-links">
+                  <div class="post-prw-date"><i class="icon-calendar"></i>August 27, 2020</div>
+                  <a href="#" class="post-prw-author">by Jon Cock</a>
+                </div>
+                <h4 class="post-prw-title"><a href="#">FOXic shopify theme</a></h4>
+                <a href="#" class="post-prw-comments"><i class="icon-chat"></i>15 comments</a>
+              </div>
+            </div>
+            <div class="aside-block">
+              <h2 class="text-uppercase">Meta</h2>
+              <ul class="list list--nomarker">
+                <li><a href="#">Log in</a></li>
+                <li><a href="#">Entries RSS</a></li>
+                <li><a href="#">Comments RSS</a></li>
+              </ul>
+            </div>
+            <div class="aside-block">
+              <h2 class="text-uppercase">Archives</h2>
+              <ul class="list list--nomarker">
+                <li><a href="#">January 2018</a></li>
+                <li><a href="#">February 2018</a></li>
+                <li><a href="#">March 2018</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+{% endblock body%}

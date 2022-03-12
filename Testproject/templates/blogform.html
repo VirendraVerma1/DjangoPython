@@ -5,10 +5,18 @@ Blog Form
 {% endblock title%}
 
 {% block style %}
-{% comment %} <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> {% endcomment %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 {% endblock style %}
 
 {% block body %}
+
+{% if messages %}
+	{% for message in messages %}
+	<div class="alert alert-{{ message.tags }}" role="alert">
+		{{ message }}
+	</div>
+	{% endfor %}
+	{% endif %}
 
 <div class="page-content">
     <div class="holder breadcrumbs-wrap mt-0">
@@ -26,7 +34,7 @@ Blog Form
             <h2 class="text-center">Blog Form</h2>
             <div class="form-wrapper">
               <p>Please Fill information about your blog</p>
-              <form action='/blogform' method='POST' enctype="multipart/form-data">
+              <form action='/blogpostupdate' method='POST' enctype="multipart/form-data">
               {% csrf_token %}
                 
                  
@@ -46,15 +54,13 @@ Blog Form
                     <div class="form-group">
                       {{form.tags}}
                   </div>
-                    <div class="form-group">
-                        {{form.user_id}}
-                    </div>
+                    
                     <div class="form-group">
                         {{form.username}}
                     </div>
                     
                 <div class="text-center">
-                    <input type="submit" value="Submit">
+                    <input type="submit" class="btn btn--sm" value="Submit">
                 </div>
               </form>
             </div>

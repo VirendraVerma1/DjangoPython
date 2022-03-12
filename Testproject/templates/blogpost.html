@@ -1,4 +1,4 @@
-
+{% extends 'base.html '%}
 
 {% block title %}
 Blog Post
@@ -19,6 +19,8 @@ Blog Post
     <div class="container">
       <div class="page-title text-center">
         <h1>Blog Post</h1>
+        <a href="{% url 'blogpostupdate' blog.id %}" class="btn btn--sm" style="float:right;">Update</a>
+        <a href="{% url 'blogpostdelete' blog.id %}" class="btn btn--sm" style="float:right;">Delete</a>
       </div>
       <div class="row">
         <div class="col-md-14 aside aside--content">
@@ -52,10 +54,9 @@ Blog Post
             </div>
             <div class="post-bot">
               <ul class="tags-list post-tags-list">
-                
-                <li><a href="#">Seiko</a></li>
-                <li><a href="#">Banita</a></li>
-                <li><a href="#">Bigsteps</a></li>
+                {% for tag in blog.tags.all %}
+                <li><a href="{% url 'home' %}?tag={{tag.id}}">{{tag.title}}</a></li>
+                {% endfor %}
               </ul>
               <a href="#" class="post-share">
                 <!-- Go to www.addthis.com/dashboard to customize your tools -->

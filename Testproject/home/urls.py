@@ -21,10 +21,15 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.index,name="home"),
+    path('index', views.index,name="index"),
     path('about', views.about,name="about"),
     path('contact', views.contact,name="contact"),
     path('login', views.loginUser,name="login"),
     path('logout', views.logoutUser,name="logout"),
     path('blogform', views.blogform,name="blogform"),
+    path('blogtag', views.blogform,name="blogtag"),
+    path('blogtagsubmit', views.blogform,name="blogtagsubmit"),
     path('blogpost/<int:idd>', views.blogpost,name="blogpost"),
+    path('blogpostdelete/<int:idd>', views.blogpostdelete,name="blogpostdelete"),
+    path('blogpostupdate/<int:idd>', views.blogpostupdate,name="blogpostupdate"),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

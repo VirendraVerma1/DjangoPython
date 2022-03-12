@@ -8,3 +8,6 @@ class DateInput(TextInput):
 
 class PasswordInput(TextInput):
     input_type = 'password'
+
+class HiddenInput(TextInput):
+    input_type = 'hidden'

@@ -21,7 +21,7 @@ class Blog(models.Model):
     username=models.CharField(max_length=122,null=True,default=None)
     image=models.ImageField(upload_to='static/images/',null=True,default=None)
     date=models.DateField(null=True,default=None)
-    tags=models.ManyToManyField(Tag,verbose_name="My Tags",null=True,default=None)
+    tags=models.ManyToManyField(Tag,related_name='tagss',verbose_name="MyTags",null=True,default=None)
     # tags=models.ForeignKey(Tag,on_delete=models.CASCADE,verbose_name="My Tags",null=True,default=None)
 
 

@@ -1,0 +1,55 @@
+{% extends 'base.html '%}
+
+{% block title %}
+Blog Form
+{% endblock title%}
+
+{% block style %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock style %}
+
+{% block body %}
+
+<div class="page-content">
+    <div class="holder breadcrumbs-wrap mt-0">
+      <div class="container">
+        <ul class="breadcrumbs">
+          <li><a href="index.html">Home</a></li>
+          <li><span>Blog Form</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="holder">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-18 col-lg-12">
+            <h2 class="text-center">Blog Form</h2>
+            <a href="{% url 'blogtag' %}" class="btn btn--sm" style="float:right;">Create Tags</a>
+            <div class="form-wrapper">
+              <p>Please Fill information about your blog</p>
+              
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  {% block js %}
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $('#id_tags').select2();
+  });
+  </script>
+
+  {% endblock %}
+
+{% endblock body%}
+

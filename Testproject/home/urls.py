@@ -32,4 +32,5 @@ urlpatterns = [
     path('blogpost/<int:idd>', views.blogpost,name="blogpost"),
     path('blogpostdelete/<int:idd>', views.blogpostdelete,name="blogpostdelete"),
     path('blogpostupdate/<int:idd>', views.blogpostupdate,name="blogpostupdate"),
+    path('blogajaxtest', views.ajaxTest,name="blogajaxtest"),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

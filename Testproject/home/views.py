@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from datetime import datetime
 from home.models import Contact
 from home.models import Blog,Tag
@@ -122,7 +122,7 @@ def blogpost(request,idd):
 def blogpostdelete(request,idd):
     blog=Blog.objects.get(id=idd)
     blog.delete()
-    return redirect("/index")
+    return redirect("home")
 
 def blogpostupdate(request,idd):
     if(request.user.is_anonymous):
@@ -206,4 +206,15 @@ def submittag(request):
         return render(request, 'blogtagslist.html',context)
 
 #endregion
+def is_ajax(request):
+    return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+
+def ajaxTest(request):
+    if is_ajax(request=request):
+        test=request.GET.get('text')
+        print(test)
+        return JsonResponse({"key":"Hello"},status=200)
+    
+    else:
+        return redirect("home")
 

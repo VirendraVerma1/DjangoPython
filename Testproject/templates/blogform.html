@@ -34,7 +34,7 @@ Blog Form
             <h2 class="text-center">Blog Form</h2>
             <div class="form-wrapper">
               <p>Please Fill information about your blog</p>
-              <form action='/blogpostupdate' method='POST' enctype="multipart/form-data">
+              <form action='/blogform' method='POST' enctype="multipart/form-data">
               {% csrf_token %}
                 
                  
@@ -58,6 +58,10 @@ Blog Form
                     <div class="form-group">
                         {{form.username}}
                     </div>
+
+                    <div class="form-group">
+                      {{form.user_id}}
+                  </div>
                     
                 <div class="text-center">
                     <input type="submit" class="btn btn--sm" value="Submit">

@@ -17,15 +17,18 @@ Blog Post
   </div>
   <div class="holder">
     <div class="container">
+          <div id="ajaxTest"></div>
+                                                  <div id="testnum">55</div>
       <div class="page-title text-center">
         <h1>Blog Post</h1>
         <a href="{% url 'blogpostupdate' blog.id %}" class="btn btn--sm" style="float:right;">Update</a>
+        <a href="#" class="btn btn--sm" onclick="buttonTest()" style="float:right;">AjaxTest</a>
         <a href="{% url 'blogpostdelete' blog.id %}" class="btn btn--sm" style="float:right;">Delete</a>
       </div>
       <div class="row">
         <div class="col-md-14 aside aside--content">
           <div class="post-full">
-            <h2 class="post-title">{{blog.title}}</h2>
+            <h2 id="blogtitle" class="post-title">{{blog.title}}</h2>
             <div class="post-links">
               <div class="post-date"><i class="icon-calendar"></i>{{blog.date}}</div>
               <a href="#" class="post-link">by {{blog.username}}</a>
@@ -216,6 +219,48 @@ Blog Post
     </div>
   </div>
 </div>
+
+<script>
+
+  function javascriptTest()
+  {
+    var a="2";
+    var b=2;
+    var num=$("#blogtitle").text();
+    alert(num);
+    console.log("Test");
+  }
+
+
+  function buttonTest()
+  {
+    alert("Test");
+    $.ajax({
+      url:'/blogajaxtest',
+      type:'get',
+      data:{
+        text:$('#testnum').text()
+      },
+      success: function(response)
+      {
+        console.log(response);
+        $("#ajaxTest").append(response)
+        //var dataResult = JSON.parse(response);
+        //alert(dataResult);
+        //console.log(dataResult);
+        //if(dataResult.key)
+        //{
+         // alert(dataResult.key);
+          
+        //}
+       // else{
+       //   alert("other");
+       // }
+        
+      }
+    })
+  }
+</script>
 
 {% endblock body%}
 

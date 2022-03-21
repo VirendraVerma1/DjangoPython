@@ -5,6 +5,9 @@ from django.forms import ModelForm
 from django import forms
 from home import widgets
 
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
 class BlogFrom(ModelForm):
     class Meta:
         model=Blog
@@ -31,3 +34,8 @@ class TagForm(ModelForm):
     def __init__(self, *args,**kwargs):
         super().__init__(*args,**kwargs)
         self.fields['title'].widget.attrs.update({'class':'form-control','placeholder':'title'})
+
+class CreateUserForm(UserCreationForm):
+	class Meta:
+		model = User
+		fields = ['username', 'email', 'password1', 'password2']

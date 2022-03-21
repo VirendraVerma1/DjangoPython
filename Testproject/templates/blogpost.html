@@ -234,7 +234,6 @@ Blog Post
 
   function buttonTest()
   {
-    alert("Test");
     $.ajax({
       url:'/blogajaxtest',
       type:'get',
@@ -243,8 +242,8 @@ Blog Post
       },
       success: function(response)
       {
-        console.log(response);
-        $("#ajaxTest").append(response)
+        console.log(response.you);
+        $("#ajaxTest").html(response.you);
         //var dataResult = JSON.parse(response);
         //alert(dataResult);
         //console.log(dataResult);
